@@ -18,9 +18,21 @@ class Router
         $this->add($config);
     }
 
-    public function test()
+    public function get(string $uri, array $handler, string $group): void
     {
-        var_dump($this->routes);
+        $config = new RouteConfig(
+            method: 'GET',
+            uri: $uri,
+            group: $group,
+            handler: $handler
+        );
+
+        $this->add($config);
+    }
+
+    public function getRoutes(): array
+    {
+        return $this->routes;
     }
 
     private function add(RouteConfig $config): void
