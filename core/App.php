@@ -14,20 +14,34 @@ class App
 
     private array $instances = [];
 
-    /*
-     * Регистрация провайдеров от более важных
-     */
-    private array $providers = [
+    private array $coreProviders = [
         ConfigServiceProvider::class,
+    ];
+
+    private array $httpProviders = [
         RouteServiceProvider::class
     ];
 
-    public function run(): void
+    /**
+     * Регистрация и запуск основых провайдеров
+     */
+    public function core(): self
+    {
+        foreach ($this->coreProviders as $provider) {
+            $registeredProvider = new $provider;
+            $registeredProvider->register();
+            $registeredProvider->boot();
+        }
+
+        return $this;
+    }
+
+    public function runHttp(): void
     {
         $providers = [];
 
         // регистрация провайдеров
-        foreach($this->providers as $provider)
+        foreach($this->httpProviders as $provider)
         {
             $registeredProvider = new $provider;
             $registeredProvider->register();
@@ -44,10 +58,7 @@ class App
         // можно добавить проверку глобальных middleware
 
         // запуск провайдеров
-        foreach ($providers as $provider)
-        {
-            $registeredProvider->boot();
-        }
+        foreach ($providers as $provider) $provider->boot();
 
         // сопоставление запроса с маршрутом и вызов контроллера
         $dispatcher = new RouteDispatcher();
