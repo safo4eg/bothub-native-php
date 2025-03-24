@@ -1,24 +1,15 @@
 <?php
 
-namespace App;
-use Monolog\Handler\StreamHandler;
-use Monolog\Level;
+namespace Core\Exceptions;
 use Monolog\Logger;
 use Throwable;
 
 class ErrorHandler
 {
     private Logger $logger;
-    public function __construct(string $logPath)
+    public function __construct()
     {
-        $baseLogPath = base_path() . $logPath;
-
-        $logger = (new Logger('app_name'))
-            ->pushHandler(new StreamHandler($baseLogPath, Level::Info));
-
-        $this->logger = $logger;
-
-        $this->registerHandlers();
+        $this->logger = app()->get('logger');
     }
 
     public function registerHandlers(): void

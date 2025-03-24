@@ -18,8 +18,9 @@ class App
     private array $instances = [];
 
     private array $coreProviders = [
+//        LogServiceProvider::class,
         ConfigServiceProvider::class,
-        DatabaseServiceProvider::class
+        DatabaseServiceProvider::class,
     ];
 
     private array $httpProviders = [
