@@ -36,6 +36,7 @@ class RouteDispatcher
 
                 // запуск мидлваров
 
+                // запуск действия контроллера
                 return call_user_func([new $class(), $method], $this->request);
             }
         }

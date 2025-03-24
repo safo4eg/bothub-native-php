@@ -12,8 +12,3 @@ $app->run();
 //echo $_SERVER['REQUEST_METHOD'];
 //echo $_SERVER['REQUEST_URI'];
 //var_dump(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-echo file_get_contents('php://input');
-
-
-//app()->get('router')->test();
