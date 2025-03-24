@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Http\Request;
 use Core\Providers\ConfigServiceProvider;
+use Core\Providers\ConsoleServiceProvider;
 use Core\Routing\RouteDispatcher;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
@@ -22,6 +23,10 @@ class App
         RouteServiceProvider::class
     ];
 
+    private array $cliProviders = [
+        ConsoleServiceProvider::class
+    ];
+
     /**
      * Регистрация и запуск основых провайдеров
      */
@@ -34,6 +39,26 @@ class App
         }
 
         return $this;
+    }
+
+    public function runCli(): void
+    {
+        $providers = [];
+
+        // регистрация провайдеров
+        foreach ($this->cliProviders as $provider) {
+            $registeredProvider = new $provider;
+            $registeredProvider->register();
+            $providers[] = $registeredProvider;
+        }
+
+        // запуск провайдеров
+        foreach ($providers as $provider)
+        {
+            $provider->boot();
+        }
+
+        app()->get('console')->run();
     }
 
     public function runHttp(): void

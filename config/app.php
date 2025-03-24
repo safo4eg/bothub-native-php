@@ -1,7 +1,5 @@
 <?php
 
 return [
-    'types' => [
-        'api' => 'yes'
-    ]
+    'name' => 'My Bothub Application',
 ];
