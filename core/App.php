@@ -6,6 +6,7 @@ use Core\Http\Request;
 use Core\Providers\ConfigServiceProvider;
 use Core\Providers\ConsoleServiceProvider;
 use Core\Providers\DatabaseServiceProvider;
+use Core\Providers\MigrationServiceProvider;
 use Core\Routing\RouteDispatcher;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
@@ -26,6 +27,7 @@ class App
     ];
 
     private array $cliProviders = [
+        MigrationServiceProvider::class,
         ConsoleServiceProvider::class
     ];
 
