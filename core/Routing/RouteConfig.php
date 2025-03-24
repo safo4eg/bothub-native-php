@@ -5,10 +5,10 @@ namespace Core\Routing;
 class RouteConfig
 {
     public function __construct(
-        public string $method,
-        public string $uri,
-        public array $handler,
-        public string $group
+        public readonly string $method,
+        public readonly string $uri,
+        public readonly array $handler,
+        public readonly string $group
     )
     {}
 }

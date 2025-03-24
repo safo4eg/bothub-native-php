@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Http\Request;
 use Core\Providers\ConfigServiceProvider;
+use Core\Routing\RouteDispatcher;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
 
@@ -34,19 +35,23 @@ class App
         }
 
         // создание объекта request
-        $request = new Request(
-            method: $_SERVER['REQUEST_METHOD'],
+        $this->set('request', new Request(
+            method: strtoupper($_SERVER['REQUEST_METHOD']),
             uri: $_SERVER['REQUEST_URI'],
             body: file_get_contents('php://input')
-        );
-        $this->set('request', $request);
+        ));
 
+        // можно добавить проверку глобальных middleware
 
         // запуск провайдеров
         foreach ($providers as $provider)
         {
             $registeredProvider->boot();
         }
+
+        // сопоставление запроса с маршрутом и вызов контроллера
+        $dispatcher = new RouteDispatcher();
+        $dispatcher->dispatch();
     }
 
     /**
