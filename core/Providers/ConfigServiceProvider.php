@@ -22,6 +22,8 @@ class ConfigServiceProvider
                 array: require_once $file
             );
         }
+
+        app()->set('config', $config);
     }
 
     public function boot(): void

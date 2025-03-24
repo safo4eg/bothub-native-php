@@ -15,3 +15,10 @@ function app(): App
 {
     return App::getInstance();
 }
+
+function config(string $key, mixed $default = null): mixed
+{
+    $config = app()->get('config');
+
+    return $config->get($key, $default);
+}
