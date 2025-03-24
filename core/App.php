@@ -5,6 +5,7 @@ namespace Core;
 use Core\Http\Request;
 use Core\Providers\ConfigServiceProvider;
 use Core\Providers\ConsoleServiceProvider;
+use Core\Providers\DatabaseServiceProvider;
 use Core\Routing\RouteDispatcher;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
@@ -17,6 +18,7 @@ class App
 
     private array $coreProviders = [
         ConfigServiceProvider::class,
+        DatabaseServiceProvider::class
     ];
 
     private array $httpProviders = [

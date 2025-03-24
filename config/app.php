@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'name' => 'My Bothub Application',
+    'name' => $_ENV['APP_NAME'],
 ];
