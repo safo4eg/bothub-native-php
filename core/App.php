@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Http\Request;
 use Core\Providers\ConfigServiceProvider;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
@@ -33,6 +34,12 @@ class App
         }
 
         // создание объекта request
+        $request = new Request(
+            method: $_SERVER['REQUEST_METHOD'],
+            uri: $_SERVER['REQUEST_URI'],
+            body: file_get_contents('php://input')
+        );
+        $this->set('request', $request);
 
 
         // запуск провайдеров
