@@ -24,7 +24,34 @@ services:
     restart: unless-stopped
     networks:
       - bothub_network
+  mysql:
+    container_name: bothub_mysql
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-bothub}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - bothub_network
+  phpmyadmin:
+    container_name: bothub_phpmyadmin
+    image: phpmyadmin
+    ports:
+      - "33060:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - bothub_network
 
+volumes:
+  mysql_data:
+    name: volume_bothub_mysql
 
 networks:
   bothub_network:
