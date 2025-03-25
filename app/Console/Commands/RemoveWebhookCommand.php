@@ -17,9 +17,8 @@ class RemoveWebhookCommand extends Command
         $this->addOption(
             name: 'drop-pending-updates',
             shortcut: null,
-            mode: InputOption::VALUE_OPTIONAL,
+            mode: InputOption::VALUE_NONE,
             description: '',
-            default: false
         );
     }
 

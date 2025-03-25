@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Core\Http\Request;
-use TelegramBot\Api\BotApi;
+use Core\Providers\TelegramServiceProvider;
 
 class Webhook
 {
     public function post(Request $request)
     {
-//        $botToken = config('telegram.token');
-
-//        $bot = new BotApi($botToken);
-//        $bot->setWebhook()
+        $telegramProvider = new TelegramServiceProvider();
+        $telegramProvider->register();
+        $telegramProvider->boot();
     }
 }

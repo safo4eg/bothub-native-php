@@ -22,3 +22,8 @@ function config(string $key, mixed $default = null): mixed
 
     return $config->get($key, $default);
 }
+
+function logger()
+{
+    return app()->get('logger');
+}

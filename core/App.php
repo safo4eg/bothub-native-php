@@ -10,6 +10,7 @@ use Core\Providers\MigrationServiceProvider;
 use Core\Routing\RouteDispatcher;
 use Core\Traits\Singleton;
 use Core\Providers\RouteServiceProvider;
+use Core\Providers\LogServiceProvider;
 
 class App
 {
@@ -18,7 +19,7 @@ class App
     private array $instances = [];
 
     private array $coreProviders = [
-//        LogServiceProvider::class,
+        LogServiceProvider::class,
         ConfigServiceProvider::class,
         DatabaseServiceProvider::class,
     ];
