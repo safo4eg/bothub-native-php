@@ -48,6 +48,15 @@ services:
     restart: unless-stopped
     networks:
       - bothub_network
+  tuna:
+    container_name: bothub_tuna
+    image: yuccastream/tuna:latest
+    command: http nginx:80 --subdomain=bothub-bot
+    restart: unless-stopped
+    networks:
+      - bothub_network
+    environment:
+      - TUNA_TOKEN=tt_rm96a15gqa4ep2e4v3ilupmhhyjno4q0
 
 volumes:
   mysql_data:
