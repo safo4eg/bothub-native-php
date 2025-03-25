@@ -20,4 +20,9 @@ class Request
     {
         return $this->uri;
     }
+
+    public function body():string
+    {
+        return $this->body;
+    }
 }

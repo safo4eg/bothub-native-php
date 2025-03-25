@@ -6,16 +6,21 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use TelegramBot\Api\BotApi;
-
-#[AsCommand(name: 'webhook:set')]
-class SetWebhookCommand extends Command
+#[AsCommand(name: 'webhook:remove')]
+class RemoveWebhookCommand extends Command
 {
     protected function configure(): void
     {
-        $this->setDescription('Установить вебхук')
-            ->addArgument('url', InputArgument::REQUIRED);
+        $this->addOption(
+            name: 'drop-pending-updates',
+            shortcut: null,
+            mode: InputOption::VALUE_OPTIONAL,
+            description: '',
+            default: false
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -23,9 +28,9 @@ class SetWebhookCommand extends Command
         try {
             $token = config('telegram.token');
             $bot = new BotApi($token);
-            $url = $input->getArgument('url');
-            $bot->setWebhook($url);
-            $output->writeln("Вебхук установлен на $url");
+            $dropPendingUpdates = $input->getOption('drop-pending-updates');
+            $bot->deleteWebhook($dropPendingUpdates);
+
             return Command::SUCCESS;
         } catch (\Throwable $e) {
             return Command::FAILURE;
