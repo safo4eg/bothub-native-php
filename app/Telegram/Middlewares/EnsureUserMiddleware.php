@@ -2,10 +2,11 @@
 
 namespace App\Telegram\Middlewares;
 
-class TestMiddleware
+class EnsureUserMiddleware
 {
     public function __invoke($next, $update, $bot)
     {
+
         $next($update, $bot);
     }
 }
