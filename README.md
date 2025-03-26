@@ -3,14 +3,13 @@
 Для начала клонируем сам проект в любое место, в примере создается папка task-todo.
 
 ```
-git clone hhttps://github.com/safo4eg/bothub-native-php.git bothub
+git clone https://github.com/safo4eg/bothub-native-php.git bothub
 ```
 
-***Все дальнейшие команды должны выполняться из корня с файлом docker-compose.yml***
 
 ## Первый раз поднимаем контейнеры
 
-Поднимаем контейнеры
+Поднимаем контейнеры из корня с файлом docker-compose.yml
 
 ```
 docker compose up -d --build
@@ -30,7 +29,7 @@ cp .env.example .env
 к контейнеру bothub-app через bash-оболочку
 
 ```
-docker exec -it bothub-app bash
+docker exec -it bothub_app bash
 ```
 
 ## Ставим необходимые зависимости, выполняем миграции, устанавливаем вебхук
