@@ -3,17 +3,17 @@
 Для начала клонируем сам проект в любое место, в примере создается папка task-todo.
 
 ```
-    git clone hhttps://github.com/safo4eg/bothub-native-php.git bothub
+git clone hhttps://github.com/safo4eg/bothub-native-php.git bothub
 ```
 
 ***Все дальнейшие команды должны выполняться из корня с файлом docker-compose.yml***
 
-## Поднятие контейнеров
+## Первый раз поднимаем контейнеры
 
 Поднимаем контейнеры
 
 ```
-    docker compose up -d
+docker compose up -d --build
 ```
 
 ## Создаем .env из .env.example (все настройки там уже написаны)
@@ -21,7 +21,7 @@
 Выполняем копирование
 
 ```
-    cp .env.example .env
+cp .env.example .env
 ```
 
 ## Подключение к контейнеру с php
@@ -30,7 +30,7 @@
 к контейнеру bothub-app через bash-оболочку
 
 ```
-    docker exec -it bothub-app bash
+docker exec -it bothub-app bash
 ```
 
 ## Ставим необходимые зависимости, выполняем миграции, устанавливаем вебхук
@@ -38,15 +38,15 @@
 Все эти команды выполняются последовательно внутри контейнера bothub-app
 
 ```
-    composer install
+composer install
 ```
 
 ```
-    php console.php migrate
+php console.php migrate
 ```
 
 ```
-    php console.php webhook:set https://bothub-bot.ru.tuna.am/api/webhook
+php console.php webhook:set https://bothub-bot.ru.tuna.am/api/webhook
 ```
 
 ## Проверяем работу бота
@@ -54,5 +54,5 @@
 Копируем username бота и ищем его в поиске телеграм клиента.
 
 ```
-   @bothub11_bot
+@bothub11_bot
 ```
