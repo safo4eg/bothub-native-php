@@ -52,7 +52,11 @@ class HandlersRouter
                         };
                     };
 
-                    $onMessageHandler = array_reduce($route->middlewares, $func, $mainHandler);
+                    $onMessageHandler = array_reduce(
+                        array_reverse($middlewares),
+                        $func,
+                        $mainHandler
+                    );
                 } else {
                     $onMessageHandler = function (Update $update) use($mainHandler) {
                         return $mainHandler($update, $this->client);

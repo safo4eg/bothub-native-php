@@ -9,7 +9,7 @@ class HandlerConfig
 
     public HandlerTypeEnum $type;
 
-    public function middleware(array $middlewares)
+    public function middlewares(array $middlewares)
     {
         $this->middlewares = $middlewares;
     }
