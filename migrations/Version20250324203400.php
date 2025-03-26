@@ -25,13 +25,13 @@ final class Version20250324203400 extends AbstractMigration
         $table->addColumn(name: 'id', typeName: 'bigint', options: [
             'unsigned' => true,
             'autoincrement' => true,
-            'default' => 0
         ]);
 
         $table->setPrimaryKey(['id']);
 
         $table->addColumn(name: 'balance', typeName: 'bigint', options: [
             'unsigned' => true,
+            'default' => 0
         ]);
     }
 
